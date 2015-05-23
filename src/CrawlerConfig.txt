@@ -1,0 +1,24 @@
+
+                    # Config for Crawler #
+                # Use '#' symbol for commenting #
+
+# set it to true , if you want to fetch the page contents as well, CURRENTLY NOT IN USE
+downloadHtmlPageContent=false
+
+#This is the depth upto which the crawler will crawl, 
+crawlDepth=4
+
+#specify the type of links that you don't want to visit
+blockedLinkTypes=['png','jpg','mp3','css','ico','js']
+
+#specify the type of links that are known to the system
+knownLinkTypes=['js', 'css', 'html', 'htm', 'jpeg', 'jpg', 'png', 'mp3', 'pdf', 'ico']
+
+#The crawler will wait atleast 300 ms between continuous page requests
+politenessDelay=1000
+
+#The crawler will crawl atmost 'maxLinksToCrawl' number of links
+maxLinksToCrawl=5
+
+# Name of the text file in which you want to store the links visited so far 
+linkStoreFileName="LinkStore.txt"

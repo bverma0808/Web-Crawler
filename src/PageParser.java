@@ -1,23 +1,16 @@
 import java.util.*;
 
 /**
-* Author: Bharat Verma
-* This class will make our ParserThread , which will continuously fetch data from the RawDataBucket and 
-*  parse the HTML data to extract out all the links, It then put extracted links into the LinkPoolBucket
+*  This class provides method to parse the HTML data to extract out all the links from that data
 */
-public class PageParser implements Runnable , LifeCycleHandler{
-   boolean life = true;
-   
-   public void kill(){
-      life = false;
-   }
-   
+public class PageParser {
+
    /**
    * This method parses the htmlContent and extracts all the links present in the html page 
-   * @param String containing HTML content
-   * @return a arrayList containing links
+   * @param htmlContent String containing HTML content
+   * @return List<String>  list of strings containing links
    */
-   public static ArrayList<String> parse(String htmlContent){
+   public static List<String> parse(String htmlContent){
       ArrayList<String> listOfLinks = new ArrayList<String>();
       String linkURL = "";
 	  
@@ -97,34 +90,4 @@ public class PageParser implements Runnable , LifeCycleHandler{
 	  return listOfLinks;
    }
 
-   
-   /**
-    * First method to be run when this thread starts
-   */
-   public void run (){
-   
-      while(life){
-	     String rawData = CentralDataBuckets.removeFromRDB();
-		
-		 if(rawData!=null){
-		    ArrayList<String> listOfURLs = parse(rawData);
-			Iterator iterator = listOfURLs.iterator();
-			while(iterator.hasNext()){
-			   String url = (String)iterator.next();
-			   Link link = new Link(url);
-			   CentralDataBuckets.addToLPB(link);
-			}
-		 }
-		 politenessDelay();
-	  }
-   }
-   
-   public void politenessDelay(){
-       try{
-		 Thread.sleep(2000);
-	   }
-	   catch(Exception e){
-	   }
-   }
-   
 }
