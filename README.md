@@ -3,6 +3,7 @@
 A crawler is a program that visits Web sites and reads their pages and other information in order to create entries for a search engine index.
 ###Features
 * Configuration Driven code 
+* Easy to setup, easy to run
 * No need to compile the code again while changing the CrawlerConfig.txt
 * Will automatically create a LinkStore text file for you which will save the visited links
 
